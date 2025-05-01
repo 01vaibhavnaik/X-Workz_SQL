@@ -3,6 +3,7 @@ CREATE DATABASE global_nations;
 USE global_nations;
 
 CREATE TABLE nation_data (
+  
   country_id INT,
   country_name VARCHAR(20),
   continent VARCHAR(20),
@@ -13,15 +14,19 @@ CREATE TABLE nation_data (
 ALTER TABLE nation_data
 ADD COLUMN capital VARCHAR(25),
 ADD COLUMN currency VARCHAR(20),
-ADD COLUMN official_language VARCHAR(25);
+ADD COLUMN official_language VARCHAR(25),
+ADD COLUMN prime_minister VARCHAR(20);
 
 ALTER TABLE nation_data
-RENAME COLUMN area_km2 TO total_area;
+RENAME COLUMN area_km2 TO total_area,
+RENAME COLUMN official_language TO languages,
+RENAME COLUMN continent TO continent_name;
 
 ALTER TABLE nation_data
 MODIFY COLUMN capital VARCHAR(25),
 MODIFY COLUMN currency VARCHAR(20),
 MODIFY COLUMN official_language VARCHAR(25);
+
 
 DESC nation_data;
 
@@ -47,4 +52,19 @@ INSERT INTO nation_data VALUES
 (19,'Estonia',      'Europe',        1300000,    45227,  'Tallinn',         'EUR', 'Estonian'),
 (20,'Bolivia',      'South America',12000000,  1098581,  'Sucre',           'BOB', 'Spanish/Quechua/Aymara');
 
-SELECT * FROM nation_data;
+SELECT * FROM nation_data where continent_name='Europe' and country_id between 2 and 13; 
+
+update nation_data set country_name='India'  where country_id between 3 and 10 ;
+
+delete from nation_data where country_id in(17,20);
+delete from nation_data where country_id  not in(2,18);
+delete from nation_data where country_id between 14 and 16;
+delete from nation_data where country_id=11 or country_id=9;
+
+select * from nation_data where currency ='eur';
+select * from nation_data where country_id in(6,7,8); 
+select * from nation_data where continent_name='Asia' or continent_name='Europe'; 
+select * from nation_data where continent_name='Asia' and country_id in(4,5.7,9); 
+
+
+

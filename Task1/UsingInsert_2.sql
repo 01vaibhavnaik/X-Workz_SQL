@@ -12,14 +12,18 @@ CREATE TABLE state_data (
 
 ALTER TABLE state_data
 ADD COLUMN capital VARCHAR(30),
+ADD COLUMN state_minister VARCHAR(30),
 ADD COLUMN official_language VARCHAR(25);
 
 ALTER TABLE state_data
-RENAME COLUMN area_km2 TO total_area;
+RENAME COLUMN area_km2 TO total_area,
+RENAME COLUMN official_language TO languages ,
+RENAME COLUMN state_minister TO minister;
 
 ALTER TABLE state_data
-MODIFY COLUMN capital VARCHAR(30),
-MODIFY COLUMN official_language VARCHAR(25);
+modify capital varchar(30),
+modify languages varchar(50),
+modify minister varchar(10);
 
 DESC state_data;
 

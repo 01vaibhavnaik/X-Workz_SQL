@@ -18,9 +18,14 @@ ADD COLUMN email VARCHAR(50),
 ADD COLUMN phone_number VARCHAR(20);
 
 ALTER TABLE person_data
-MODIFY COLUMN occupation VARCHAR(50),
+RENAME COLUMN phone_number to ph_number,
+RENAME COLUMN occupation to works,
+RENAME COLUMN date_of_birth to birth_date;
+
+ALTER TABLE person_data
+MODIFY COLUMN ph_number VARCHAR(20),
 MODIFY COLUMN email VARCHAR(50),
-MODIFY COLUMN phone_number VARCHAR(20);
+MODIFY COLUMN works VARCHAR(50);
 
 DESC person_data;
 
